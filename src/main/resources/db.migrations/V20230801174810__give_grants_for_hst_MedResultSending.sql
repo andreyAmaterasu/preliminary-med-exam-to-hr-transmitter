@@ -1,0 +1,1 @@
+GRANT SELECT, INSERT, UPDATE ON [dbo].[hst_MedResultSending] TO pre_med_exam_transmitter_srv;

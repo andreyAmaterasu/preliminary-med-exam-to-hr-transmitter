@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:annox="http://annox.dev.java.net"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+  jaxb:extensionBindingPrefixes="xjc annox" version="2.1">
+
+  <jaxb:bindings schemaLocation="MedicalExam.wsdl#types1">
+    <jaxb:bindings node="//xs:complexType[@name='DT_MedicalExamRequest']">
+      <annox:annotate target="class">
+        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement"
+          name="MT_MedicalExamRequest" />
+      </annox:annotate>
+      <annox:annotate target="class">@lombok.Builder</annox:annotate>
+      <annox:annotate target="class">@lombok.NoArgsConstructor</annox:annotate>
+      <annox:annotate target="class">@lombok.AllArgsConstructor</annox:annotate>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>

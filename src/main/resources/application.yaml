@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: preliminary-med-exam-to-hr-transmitter
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://${spring.datasource.host};databaseName=${spring.datasource.database};applicationName=${spring.application.name};encrypt=true;trustServerCertificate=true;
+    host: host
+    database: database
+    username: username
+    password: password
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 3
+      schema: dbo
+  jpa:
+    hibernate:
+      # 2 настройки, чтобы JPA не преобразовывал автоматически указанные в java-коде имена колонок, например, DateVaccine в date_vaccine
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 300000
+        read-timeout: 300000
+
+logging:
+  file:
+    path: logs
+    name: ${logging.file.path}/${spring.application.name}.log
+  level:
+    ru:
+      hostco: info
+    root: info
+  pattern:
+    file: '"%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"'
+
+app:
+  date-from:
+  date-to:
+  kind-interval-time:
+  date-time-pattern: "yyyy-MM-dd HH:mm"
+  services:
+    bk:
+      url: bk-url
+      has-authorization: false
+      user: bkuser
+      password: bkpassword
+      headers:
+        SOAPAction: "http://sap.com/xi/WebService/soap1.1"
+        Content-Type: "text/xml;charset=UTF-8"

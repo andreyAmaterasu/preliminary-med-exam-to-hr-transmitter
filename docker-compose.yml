@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+  preliminary-med-exam-to-hr-transmitter:
+    image: ${IMAGE}
+    container_name: preliminary-med-exam-to-hr-transmitter
+    restart: unless-stopped
+    env_file:
+      - .env
+
+    environment:
+      SPRING_DATASOURCE_HOST: host
+      SPRING_DATASOURCE_DATABASE: database
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_APPLICATION_NAME: preliminary-med-exam-to-hr-transmitter
+      # Формат даты в полях APP_DATEFROM/APP_DATETO - YYYY-MM-DD, значение указывать в кавычках
+      # При ручном указании значений в полях APP_DATEFROM/APP_DATETO, необходимо удалить значение из настройки APP_KINDINTERVALTIME
+      APP_DATEFROM:
+      APP_DATETO:
+      APP_KINDINTERVALTIME:
+      APP_DATETIMEPATTERN: "yyyy-MM-dd HH:mm"
+      APP_SERVICES_BK_URL: bk-url
+      APP_SERVICES_BK_HASAUTHORIZATION: false
+      # Пользователь авторизации (Неодходим только при ее наличии)
+      APP_SERVICES_BK_USER: bkuser
+      # Пароль авторизации (Необходим только при ее наличии)
+      APP_SERVICES_BK_PASSWORD: bkpassword
+      # Connect-timeout к сервису БК (в мс)
+      FEIGN_CLIENT_CONFIG_DEFAULT_CONNECTTIMEOUT: 300000
+      # Read-timeout к сервису БК (в мс)
+      FEIGN_CLIENT_CONFIG_DEFAULT_READTIMEOUT: 300000
+      # Расписание cron. По умолчанию 0 7 * * *, при необходимости можно сменить на другое значение
+      #CRON_SCHEDULE: '*/5 * * * *'
+      # Часовой пояс
+      TZ: Asia/Yekaterinburg
+
+    logging:
+      options:
+        max-size: 10m
+
+    volumes:
+      - ./logs:/root/logs

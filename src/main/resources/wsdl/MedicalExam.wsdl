@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SI_MedicalExam_Async_Out" targetNamespace="http://alrosa.ru/BOSS/MIS"
+  xmlns:p1="http://alrosa.ru/BOSS/MIS" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation/>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_SI_MedicalExam_Async_Out"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://alrosa.ru/BOSS/MIS" xmlns="http://alrosa.ru/BOSS/MIS"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="MT_MedicalExamRequest" type="DT_MedicalExamRequest"/>
+      <xsd:complexType name="DT_MedicalExamRequest">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Медицинский осмотр</xsd:documentation>
+          <xsd:appinfo source="http://sap.com/xi/VersionID">31fc03c37bc311edbab60000020c8846
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="messageID" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">93291f117ade11edbb2b00505680c662
+              </xsd:appinfo>
+              <xsd:documentation>ID сообщения</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="sourceSystem" type="xsd:string" minOccurs="0">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">31f76ecf7bc311edbaf200505680c662
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="row" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:appinfo source="http://sap.com/xi/TextID">f8cbd5f67afc11edc38600505680c662
+              </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="fromd" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                      93291f127ade11edcb4a00505680c662
+                    </xsd:appinfo>
+                    <xsd:documentation>Дата С</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="tod" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                      93291f137ade11edc04b00505680c662
+                    </xsd:appinfo>
+                    <xsd:documentation>Дата По</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="pid" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                      93291f147ade11eda16d00505680c662
+                    </xsd:appinfo>
+                    <xsd:documentation>ID сотрудника</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="description" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                      31f7b08e7bc311ed9c3000505680c662
+                    </xsd:appinfo>
+                    <xsd:documentation>Статус</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="status" type="xsd:string" minOccurs="0">
+                  <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                      93291f157ade11edc0df00505680c662
+                    </xsd:appinfo>
+                    <xsd:documentation>Состояние</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MT_MedicalExamRequest">
+    <wsdl:documentation/>
+    <wsdl:part name="MT_MedicalExamRequest" element="p1:MT_MedicalExamRequest"/>
+  </wsdl:message>
+  <wsdl:portType name="SI_MedicalExam_Async_Out">
+    <wsdl:documentation/>
+    <wsdl:operation name="SI_MedicalExam_Async_Out">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_SI_MedicalExam_Async_Out"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:MT_MedicalExamRequest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SI_MedicalExam_Async_OutBinding" type="p1:SI_MedicalExam_Async_Out">
+    <soapbind:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"
+      xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="SI_MedicalExam_Async_Out">
+      <soapbind:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+        xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soapbind:body use="literal" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SI_MedicalExam_Async_OutService">
+    <wsdl:port name="HTTP_Port" binding="p1:SI_MedicalExam_Async_OutBinding">
+      <soapbind:address
+        location="http://mir-sap16.alrosa.ru:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BC_MedCenter&amp;receiverParty=&amp;receiverService=&amp;interface=SI_MedicalExam_Async_Out&amp;interfaceNamespace=http%3A%2F%2Falrosa.ru%2FBOSS%2FMIS"
+        xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+    <wsdl:port name="HTTPS_Port" binding="p1:SI_MedicalExam_Async_OutBinding">
+      <soapbind:address
+        location="https://mir-sap16.alrosa.ru:50301/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=BC_MedCenter&amp;receiverParty=&amp;receiverService=&amp;interface=SI_MedicalExam_Async_Out&amp;interfaceNamespace=http%3A%2F%2Falrosa.ru%2FBOSS%2FMIS"
+        xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

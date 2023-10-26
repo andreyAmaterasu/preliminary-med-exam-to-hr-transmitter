@@ -1,0 +1,1 @@
+GRANT SELECT ON [dbo].[V_hst_BK_Result] TO pre_med_exam_transmitter_srv;
